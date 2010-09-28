@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>street view test</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="stview.css" type="text/css">
+  </head>
+  <body>
+    <h3>Google street view with custom overlay test</h3>
+    <div id="pano" style="width: 700px; height: 400px;"></div>
+    <div id="map_canvas" style="width: 700px; height: 300px"></div>
+  </body>
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+  <script src="jquery.js"></script>
+  <script src="stview.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $("document").ready(stv.init);
+  </script>
+</html>

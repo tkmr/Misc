@@ -1,0 +1,12 @@
+# Logfile created on Tue Oct 05 19:05:36 +0900 2010 by logger.rb/22285
+2010-10-05 19:05:36.675827 tktest(13822) [INFO] [daemon-kit]: DaemonKit (0.1.8.1) booting in development mode
+2010-10-05 19:05:36.676008 tktest(13822) [INFO] [daemon-kit]: Setting up trap for USR1
+2010-10-05 19:05:36.676168 tktest(13822) [INFO] [daemon-kit]: Setting up trap for USR2
+2010-10-05 19:05:36.676327 tktest(13822) [INFO] [daemon-kit]: Setting up trap for HUP
+2010-10-05 19:05:36.676485 tktest(13822) [INFO] [daemon-kit]: Setting up trap for INT
+2010-10-05 19:05:36.676649 tktest(13822) [INFO] [daemon-kit]: Setting up trap for TERM
+2010-10-05 19:05:36.677019 tktest(13822) [INFO] [daemon-kit]: DaemonKit (0.1.8.1) booted, now running tktest
+2010-10-05 19:05:36.677146 tktest(13822) [INFO] tktest-daemon.rb:16: I'm running
+2010-10-05 19:05:45.894950 tktest(13822) [INFO] [daemon-kit]: Running signal traps for INT
+2010-10-05 19:05:45.895259 tktest(13822) [INFO] [daemon-kit]: Running shutdown hooks
+2010-10-05 19:05:45.895445 tktest(13822) [WARN] [daemon-kit]: Shutting down tktest

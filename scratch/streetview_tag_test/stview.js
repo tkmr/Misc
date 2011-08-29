@@ -29,16 +29,67 @@ stv.Tag.prototype.onAdd = function(){
   }
 }
 stv.Tag.prototype.draw = function(){
+  var projection = this.inspect_projection(700, 400);
+
+  this.elem.style.left = projection.left + 'px';
+  this.elem.style.top  = projection.top + 'px';
+  //this.elem.style['fontSize'] = (pov.zoom * 10) + 'pt';
+}
+stv.Tag.prototype.inspect_projection = function(disp_x, disp_y){
+  /*
   var pos = new google.maps.LatLng(this.lat, this.lng);
   var proj = this.getProjection();
   var point = proj.fromLatLngToDivPixel(pos);
+  */
 
   var pov = stvmap.stv.getPov();
-  console.log(pov);
+  var pos = stvmap.stv.getPosition();
+  var camera = {
+    head: pov.heading,
+    pitch: pov.pitch,
+    zoom: pov.zoom,
+    lat:  pos.lat(),
+    lng:  pos.lng()
+  };
+  console.log([camera.head, camera.pitch, camera.zoom, camera.lat, camera.lng]);
 
-  this.elem.style.left = pov.heading + 'px';
-  this.elem.style.top  = pov.pitch + 'px';
-  this.elem.style['fontSize'] = (pov.zoom * 10) + 'pt';
+  //head  = 0 - 360..
+  //pitch = -90 - 0 - 90
+  //zoom  = 1, 2, 3, ...
+  //lat   = North .... Sounth
+  //lng   = West ..... East
+
+  //rad = (degree / 360) * (Math.PI * 2);
+  //deg = (rad / (Math.PI * 2)) * 360;
+
+  var pow = function(x){ return x * x; }
+
+  //Kakudo //////////////////////////////////////////
+  var diff_lat = this.lat - camera.lat;
+  var diff_lng = this.lng - camera.lng;
+
+  var tan = diff_lat / diff_lng;
+  var digree = (Math.atan(tan) / (2 * Math.PI)) * 360;
+
+  //Kyori ///////////////////////////////////////////
+  var kyori = Math.sqrt( pow(diff_lat) + pow(diff_lng) );
+
+  //Camera //////////////////////////////////////////
+  var diff_head  = digree - camera.head;
+  var diff_pitch = -1 * (-20 - camera.pitch);
+
+  var max_kyori = 0.0001;
+
+  var max_gakaku_x = 45;
+  var max_gakaku_y = 30;
+
+  var gakaku_hi_x = (disp_x / 2) / max_gakaku_x;
+  var gakaku_hi_y = (disp_y / 2) / max_gakaku_y;
+
+  var left = gakaku_hi_x * diff_head;
+  var top  = gakaku_hi_y * diff_pitch;
+
+  return {left: left, top: top};
 }
 
 //---------------------------------------
